@@ -8,11 +8,31 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, TrendingUp, ShieldCheck, Target, AlertCircle, ArrowRight } from "lucide-react";
 
-export default function AdvisorPage() {
-  const [selectedRisk, setSelectedRisk] = useState("moderate");
-  const [selectedGoal, setSelectedGoal] = useState("growth");
+type RiskLevel = "conservative" | "moderate" | "aggressive";
+type GoalType = "growth";
 
-  const recommendations = {
+type PortfolioRecommendation = {
+  title: string;
+  description: string;
+  allocation: {
+    name: string;
+    percentage: number;
+    color: string;
+  }[];
+  expectedReturn: string;
+  riskLevel: string;
+  timeHorizon: string;
+};
+
+type Recommendations = {
+  [K in RiskLevel]: PortfolioRecommendation;
+};
+
+export default function AdvisorPage() {
+  const [selectedRisk, setSelectedRisk] = useState<RiskLevel>("moderate");
+  const [selectedGoal, setSelectedGoal] = useState<GoalType>("growth");
+
+  const recommendations: Recommendations = {
     conservative: {
       title: "Conservative Portfolio",
       description: "Focus on capital preservation with steady, modest returns",
