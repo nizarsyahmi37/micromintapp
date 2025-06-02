@@ -121,7 +121,7 @@ export default function AdvisorPage() {
               <CardDescription>Choose the level of risk you're comfortable with</CardDescription>
             </CardHeader>
             <CardContent>
-              <Tabs value={selectedRisk} onValueChange={setSelectedRisk}>
+              <Tabs value={selectedRisk} onValueChange={(value) => setSelectedRisk(value as RiskLevel)}>
                 <TabsList className="grid grid-cols-3 mb-4">
                   <TabsTrigger value="conservative">Conservative</TabsTrigger>
                   <TabsTrigger value="moderate">Moderate</TabsTrigger>
